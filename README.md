@@ -42,10 +42,33 @@ mvn clean install
 # Create an .env file or update application.properties:
 
 # Database Configuration
-spring.datasource.url=jdbc:postgresql://localhost:5432/agroconnect
-spring.datasource.username=your_db_user
-spring.datasource.password=your_db_password
+spring.datasource.url=jdbc:mysql://localhost:3306/agroconnect
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Hibernate Settings
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.hibernate.ddl-auto=update
+
+# Ensure the Database is Running
+# For MySQL, start the MySQL server:
+sudo systemctl start mysql  # Linux
+net start MySQL80           # Windows
+
+# If you haven't created the database yet, do it manually:
+CREATE DATABASE agroconnect;
+
+# 3️⃣ Add the Required JDBC Driver
+# Ensure the JDBC driver dependency is added in your pom.xml:
+
+# For MySQL:
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
 
 # Server Configuration
 server.port=8080
