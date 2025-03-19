@@ -16,7 +16,7 @@ To get a local copy of AgroConnect Backend, run the following command in your te
 git clone https://github.com/AgroConect/agroconnect-bakend.git
 
 
-# For React/Next.js frontend:
+# For Java backend:
 npm install
 
 # Pull the Latest Changes
