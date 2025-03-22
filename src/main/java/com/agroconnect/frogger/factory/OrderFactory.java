@@ -2,6 +2,8 @@ package com.agroconnect.frogger.factory;
 
 import com.agroconnect.frogger.entity.Order;
 
+import java.math.BigInteger;
+
 public interface OrderFactory {
-    Order createOrder(int customerId, int productId, int quantity, double totalPrice, String status);
+    Order createOrder(BigInteger customerId, BigInteger productId, int quantity, double totalPrice, String status);
 }
