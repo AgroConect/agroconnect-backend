@@ -5,11 +5,13 @@ import com.agroconnect.frogger.entity.Product;
 import com.agroconnect.frogger.entity.Status;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 public class DefaultProductFactory implements ProductFactory {
 
     @Override
-    public Product createProduct(String name, String category, double price, int quantity, String status) {
+    public Product createProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status) {
         Product product = new Product();
         product.setName(name);
         product.setCategory(Category.valueOf(category));

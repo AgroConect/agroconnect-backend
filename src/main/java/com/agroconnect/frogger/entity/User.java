@@ -36,6 +36,11 @@ public class User {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public User(String name, String email, String encode, String role, String address, String postcode, String phoneNumber) {
+    }
+
+
+
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
