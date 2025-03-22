@@ -69,6 +69,21 @@ CREATE DATABASE agroconnect;
     <scope>runtime</scope>
 </dependency>
 
+# Flyway Migationn for the Database
+# Flyway Dependecies
+<dependency>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-core</artifactId>
+</dependency>
+
+# Add this to application.properties
+# Enable Flyway
+spring.flyway.enabled=true
+
+#Migrate manually
+mvn flyway:migrate  # For Maven projects
+./gradlew flywayMigrate  # For Gradle projects
+
 
 # Server Configuration
 server.port=8080
