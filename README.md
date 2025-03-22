@@ -79,6 +79,7 @@ CREATE DATABASE agroconnect;
 # Add this to application.properties
 # Enable Flyway
 spring.flyway.enabled=true
+spring.flyway.baseline-on-migrate=true
 
 #Migrate manually
 mvn flyway:migrate  # For Maven projects
