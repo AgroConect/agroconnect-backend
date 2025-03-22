@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  products (
-                          id SERIAL PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           farmer_id INT NOT NULL,
                           name VARCHAR(255) NOT NULL,
                           category ENUM('vegetable', 'fruit', 'grain', 'dairy', 'meat') NOT NULL,

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  weather_forecast (
-                                  id SERIAL PRIMARY KEY,
+                                  id INT AUTO_INCREMENT PRIMARY KEY,
                                   location VARCHAR(255) NOT NULL,
                                   temperature DECIMAL(5,2) NOT NULL,
                                   humidity DECIMAL(5,2) NOT NULL,

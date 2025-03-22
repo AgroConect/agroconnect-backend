@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  payments (
-                          id SERIAL PRIMARY KEY,
+                          id INT AUTO_INCREMENT PRIMARY KEY,
                           order_id INT NOT NULL,
                           customer_id INT NOT NULL,
                           amount DECIMAL(10,2) NOT NULL,

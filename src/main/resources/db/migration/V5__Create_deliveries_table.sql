@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  deliveries (
-                            id SERIAL PRIMARY KEY,
+                            id INT AUTO_INCREMENT PRIMARY KEY,
                             order_id INT NOT NULL,
                             deliveryman_id INT NULL,
                             third_party_service VARCHAR(100) NULL,

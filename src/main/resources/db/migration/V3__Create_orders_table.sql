@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  orders (
-                        id SERIAL PRIMARY KEY,
+                        id INT AUTO_INCREMENT PRIMARY KEY,
                         customer_id INT NOT NULL,
                         product_id INT NOT NULL,
                         quantity INT NOT NULL,
