@@ -51,11 +51,6 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.hibernate.ddl-auto=update
 
-# Ensure the Database is Running
-# For MySQL, start the MySQL server:
-sudo systemctl start mysql  # Linux
-net start MySQL80           # Windows
-
 # If you haven't created the database yet, do it manually:
 CREATE DATABASE agroconnect;
 
@@ -83,9 +78,17 @@ spring.flyway.baseline-on-migrate=true
 
 #Migrate manually
 mvn flyway:migrate  # For Maven projects
-mvn flyway:migrate -Dflyway.url=jdbc:mysql://localhost:3306/agroconnect_db -Dflyway.user=agro_admin -Dflyway.password=SecurePass4
 ./gradlew flywayMigrate  # For Gradle projects
 
+# Check the Flyway Schema History
+# Log into MySQL:
+mysql -u agro_admin -p
+
+# Select the agroconnect_db (or your database name):
+USE agroconnect_db;
+
+# Run the following query to view the schema history:
+SELECT * FROM flyway_schema_history;
 
 # Server Configuration
 server.port=8080
