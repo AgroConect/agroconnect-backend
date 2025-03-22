@@ -83,6 +83,7 @@ spring.flyway.baseline-on-migrate=true
 
 #Migrate manually
 mvn flyway:migrate  # For Maven projects
+mvn flyway:migrate -Dflyway.url=jdbc:mysql://localhost:3306/agroconnect_db -Dflyway.user=agro_admin -Dflyway.password=SecurePass4
 ./gradlew flywayMigrate  # For Gradle projects
 
 
