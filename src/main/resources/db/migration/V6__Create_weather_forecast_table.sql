@@ -1,4 +1,4 @@
-CREATE TABLE weather_forecast (
+CREATE TABLE IF NOT EXISTS  weather_forecast (
                                   id SERIAL PRIMARY KEY,
                                   location VARCHAR(255) NOT NULL,
                                   temperature DECIMAL(5,2) NOT NULL,

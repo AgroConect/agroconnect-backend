@@ -1,4 +1,4 @@
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS  products (
                           id SERIAL PRIMARY KEY,
                           farmer_id INT NOT NULL,
                           name VARCHAR(255) NOT NULL,
