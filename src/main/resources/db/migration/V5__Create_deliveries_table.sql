@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS  deliveries (
                             id SERIAL PRIMARY KEY,
-                            order_id INT NOT NULL,
-                            deliveryman_id INT NULL,
+                            order_id BIGINT NOT NULL,
+                            deliveryman_id BIGINT NULL,
                             third_party_service VARCHAR(100) NULL,
                             status ENUM('pending', 'out for delivery', 'delivered') DEFAULT 'pending',
                             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

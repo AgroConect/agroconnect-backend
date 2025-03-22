@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS  orders (
                         id SERIAL PRIMARY KEY,
-                        customer_id INT NOT NULL,
-                        product_id INT NOT NULL,
+                        customer_id BIGINT NOT NULL,
+                        product_id BIGINT NOT NULL,
                         quantity INT NOT NULL,
                         total_price DECIMAL(10,2) NOT NULL,
                         status ENUM('pending', 'processing', 'shipped', 'delivered') DEFAULT 'pending',
