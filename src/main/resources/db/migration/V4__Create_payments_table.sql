@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS  payments (
                           id INT AUTO_INCREMENT PRIMARY KEY,
-                          order_id INT NOT NULL,
-                          customer_id INT NOT NULL,
+                          order_id BIGINT UNSIGNED NOT NULL,
+                          customer_id BIGINT UNSIGNED NOT NULL,
                           amount DECIMAL(10,2) NOT NULL,
                           payment_method ENUM('credit_card', 'paypal', 'stripe', 'paystack') NOT NULL,
                           status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
