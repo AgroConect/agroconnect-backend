@@ -38,7 +38,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsByFarmer(Integer farmerId) {
-        return productRepository.findByFarmerId(BigInteger.valueOf(farmerId));
+        return productRepository.findByFarmer_Id(BigInteger.valueOf(farmerId));
     }
 
     public Product updateProduct(BigInteger id, String name, String category, double price, int quantity, String status) {

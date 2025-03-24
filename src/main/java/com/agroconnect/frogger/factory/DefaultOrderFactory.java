@@ -12,8 +12,8 @@ public class DefaultOrderFactory implements OrderFactory {
     @Override
     public Order createOrder(BigInteger customerId, BigInteger productId, int quantity, double totalPrice, String status) {
         Order order = new Order();
-        order.setCustomerId((long) customerId);
-        order.setProductId((long) productId);
+        order.setCustomerId(customerId);
+        order.setProductId(productId);
         order.setQuantity(quantity);
         order.setTotalPrice(totalPrice);
         order.setOrderStatus(OrderStatus.valueOf(status));

@@ -44,7 +44,7 @@ public class OrderService {
     }
 
     public List<Order> getOrdersByCustomer(Integer customerId) {
-        return orderRepository.findByCustomerId(BigInteger.valueOf(customerId));
+        return orderRepository.findByCustomer_Id(BigInteger.valueOf(customerId));
     }
 
     public List<Order> getAllOrders() {
