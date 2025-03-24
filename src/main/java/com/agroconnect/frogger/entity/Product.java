@@ -1,6 +1,8 @@
 package com.agroconnect.frogger.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 @Entity
@@ -9,10 +11,10 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @ManyToOne
-    @JoinColumn(name = "farmerId", nullable = false)
+    @JoinColumn(name = "farmer_id", nullable = false)
     private User farmer;
 
     @Column(nullable = false, length = 255)
@@ -35,11 +37,11 @@ public class Product {
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public BigInteger getId() { return id; }
+    public void setId(BigInteger id) { this.id = id; }
 
-    public Long getFarmerId() { return farmer.getId(); }
-    public void setFarmerId(Long id) { this.farmer.setId(id); }
+    public BigInteger getFarmerId() { return farmer.getId(); }
+    public void setFarmerId(Long id) { this.farmer.setId(BigInteger.valueOf(id)); }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

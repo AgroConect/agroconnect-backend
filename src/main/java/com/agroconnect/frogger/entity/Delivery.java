@@ -1,6 +1,8 @@
 package com.agroconnect.frogger.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 @Entity
@@ -35,8 +37,8 @@ public class Delivery {
     public Long getOrderId() { return order.getId(); }
     public void setOrderId(Long id) { this.order.setId(id); }
 
-    public Long getDeliverymanId() { return deliveryman.getId(); }
-    public void setDeliverymanId(Long id) { this.deliveryman.setId(id); }
+    public BigInteger getDeliverymanId() { return deliveryman.getId(); }
+    public void setDeliverymanId(Long id) { this.deliveryman.setId(BigInteger.valueOf(id)); }
 
     public String getThirdPartyService() { return thirdPartyService; }
     public void setThirdPartyService(String thirdPartyService) { this.thirdPartyService = thirdPartyService; }

@@ -1,6 +1,8 @@
 package com.agroconnect.frogger.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,11 +14,11 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customerId", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private User customer;
 
     @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     @Column(nullable = false)
@@ -36,11 +38,11 @@ public class Order {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Long getCustomerId() { return customer.getId(); }
-    public void setCustomerId(Long id) { this.customer.setId(id); }
+    public BigInteger getCustomerId() { return customer.getId(); }
+    public void setCustomerId(BigInteger id) { this.customer.setId(id); }
 
-    public Long getProductId() { return product.getId(); }
-    public void setProductId(Long id) { this.product.setId(id); }
+    public BigInteger getProductId() { return product.getId(); }
+    public void setProductId(BigInteger id) { this.product.setId(id); }
 
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }
