@@ -52,5 +52,7 @@ public class UserService {
         userRepository.deleteById(Long.valueOf(id));
     }
 
+    public Object registerUser(User user) {
+    }
 }
 
