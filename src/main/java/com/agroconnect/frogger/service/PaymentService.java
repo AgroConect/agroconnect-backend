@@ -31,4 +31,7 @@ public class PaymentService {
         payment.setPaymentStatus(PaymentStatus.valueOf(status));
         return paymentRepository.save(payment);  // Save updated status
     }
+
+    public Payment processPayment(Payment payment) {
+    }
 }

@@ -26,6 +26,9 @@ public class WeatherForecastService {
         return weatherForecastRepository.save(weatherForecast);  // Save to the database
     }
 
+    public Object getWeatherByLocation(String location) {
+    }
+
 //    public WeatherForecast getWeatherByLocation(String location) {
 //        return weatherForecastRepository.findByLocation(location)
 //                .orElseThrow(() -> new RuntimeException("Weather forecast not found for this location"));

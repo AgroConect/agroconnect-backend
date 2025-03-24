@@ -55,4 +55,7 @@ public class ProductService {
     public void deleteProduct(Integer id) {
         productRepository.deleteById(Long.valueOf(id));
     }
+
+    public Object addProduct(Product product) {
+    }
 }
