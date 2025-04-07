@@ -36,11 +36,24 @@ public class Product {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public Product(User farmer, String name, Category category, Double price, int quantity, Status status) {
+        this.farmer = farmer;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status != null ? status : Status.AVAILABLE;  // Default to AVAILABLE if status is null
+    }
+
+    public Product() {
+
+    }
+
     // Getters and Setters
     public BigInteger getId() { return id; }
     public void setId(BigInteger id) { this.id = id; }
 
-    public BigInteger getFarmerId() { return farmer.getId(); }
+    public Long getFarmerId() { return farmer.getId(); }
     public void setFarmerId(Long id) { this.farmer.setId(BigInteger.valueOf(id)); }
 
     public String getName() { return name; }

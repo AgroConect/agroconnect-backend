@@ -34,15 +34,22 @@ public class Payment {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public Payment(BigInteger orderId, BigInteger customerId, double amount, String paymentMethod, String pending) {
+    }
+
+    public Payment() {
+
+    }
+
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Long getOrderId() { return order.getId(); }
-    public void setOrderId(Long id) { this.order.setId(id); }
+    public BigInteger getOrderId() { return order.getId(); }
+    public void setOrderId(BigInteger id) { this.order.setId(id); }
 
     public BigInteger getCustomerId() { return customer.getId(); }
-    public void setCustomerId(Long id) { this.customer.setId(BigInteger.valueOf(id)); }
+    public void setCustomerId(BigInteger id) { this.customer.setId(id); }
 
     public Double getTotalAmount() { return amount; }
     public void setTotalAmount(Double amount) { this.amount = amount; }

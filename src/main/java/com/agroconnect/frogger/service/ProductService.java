@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService {
+public abstract class ProductService {
 
     private final ProductFactory productFactory;
     private final ProductRepository productRepository;
@@ -24,21 +24,24 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status) {
-        Product product = productFactory.createProduct(farmerId, name, category, price, quantity, status);
+    public Product addProduct(Product product) {
+//        Product product = productFactory.createProduct(product);
         return productRepository.save(product);
     }
+
+
+    public abstract Product addProduct(BigInteger farmerId, String name, String category, Double price, Integer quantity, String status);
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Integer id) {
-        return productRepository.findById(Long.valueOf(id));
+    public Optional<Object> getProductById(BigInteger id) {
+        return productRepository.findById(id);
     }
 
-    public List<Product> getProductsByFarmer(Integer farmerId) {
-        return productRepository.findByFarmer_Id(BigInteger.valueOf(farmerId));
+    public List<Product> getProductsByFarmer(BigInteger farmerId) {
+        return productRepository.findByFarmer_Id(farmerId);
     }
 
     public Product updateProduct(BigInteger id, String name, String category, double price, int quantity, String status) {
@@ -52,10 +55,12 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void deleteProduct(Integer id) {
-        productRepository.deleteById(Long.valueOf(id));
+    public abstract Product updateProduct(BigInteger id, String name, String category, Double price, Integer quantity, String status);
+
+    public void deleteProduct(BigInteger id) {
+        productRepository.deleteById(id);
     }
 
-    public Object addProduct(Product product) {
-    }
+
+    public abstract void deleteProduct(Integer id);
 }

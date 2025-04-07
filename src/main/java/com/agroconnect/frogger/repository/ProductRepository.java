@@ -21,5 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Optional<Object> findById(BigInteger productId);
 
+    void deleteById(BigInteger id);
+
 //    Optional<Object> findById(BigInteger productId);
 }

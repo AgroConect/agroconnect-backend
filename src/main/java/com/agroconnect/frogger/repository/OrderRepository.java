@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
@@ -17,4 +18,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //    List<Order> findByCustomerId(BigInteger customer);
 List<Order> findByCustomer_Id(BigInteger customerId);
 
+    Optional<Order> findById(BigInteger id);
 }

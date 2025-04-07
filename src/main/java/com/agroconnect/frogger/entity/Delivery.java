@@ -30,15 +30,29 @@ public class Delivery {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public Delivery(Order order, User deliveryman, String thirdPartyService, DeliveryStatus deliveryStatus) {
+        this.order = order;
+        this.deliveryman = deliveryman;
+        this.thirdPartyService = thirdPartyService;
+        this.status = status != null ? status : DeliveryStatus.PENDING;  // Default to PENDING if status is null
+    }
+
+    public Delivery() {
+
+    }
+
+    public Delivery(BigInteger orderId, BigInteger deliverymanId, String thirdPartyService, String pending) {
+    }
+
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Long getOrderId() { return order.getId(); }
-    public void setOrderId(Long id) { this.order.setId(id); }
+    public BigInteger getOrderId() { return order.getId(); }
+    public void setOrderId(BigInteger id) { this.order.setId(id); }
 
-    public BigInteger getDeliverymanId() { return deliveryman.getId(); }
-    public void setDeliverymanId(Long id) { this.deliveryman.setId(BigInteger.valueOf(id)); }
+    public Long getDeliverymanId() { return deliveryman.getId(); }
+    public void setDeliverymanId(BigInteger id) { this.deliveryman.setId(id); }
 
     public String getThirdPartyService() { return thirdPartyService; }
     public void setThirdPartyService(String thirdPartyService) { this.thirdPartyService = thirdPartyService; }

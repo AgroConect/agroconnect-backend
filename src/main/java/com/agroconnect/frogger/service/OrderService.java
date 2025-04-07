@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 
-public class OrderService {
+public abstract class OrderService {
     private final OrderFactory orderFactory;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
@@ -27,6 +27,9 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
+    public Object placeOrder(Order order) {
+        return "Order status: " + order.getOrderStatus();
+    }
     public Order placeOrder(BigInteger customerId, BigInteger productId, int quantity) {
         Product product = (Product) productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
@@ -43,16 +46,19 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public List<Order> getOrdersByCustomer(Integer customerId) {
-        return orderRepository.findByCustomer_Id(BigInteger.valueOf(customerId));
+    public List<Order> getOrdersByCustomer(BigInteger customerId) {
+        return orderRepository.findByCustomer_Id(customerId);
     }
+
+
+    public abstract Order placeOrder(BigInteger customerId, Integer productId, int quantity);
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
     public Optional<Order> getOrderById(BigInteger id) {
-        return orderRepository.findById(Long.valueOf(String.valueOf(id)));
+        return orderRepository.findById(id);
     }
 
     public Order updateOrderStatus(BigInteger id, String status) {
@@ -63,7 +69,5 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Object placeOrder(Order order) {
-    }
 }
 

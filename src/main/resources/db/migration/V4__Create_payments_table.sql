@@ -1,3 +1,4 @@
+-- Step 4: Create the Payments Table
 CREATE TABLE IF NOT EXISTS payments (
                                         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                                         order_id BIGINT UNSIGNED NOT NULL,
@@ -7,5 +8,7 @@ CREATE TABLE IF NOT EXISTS payments (
                                         status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
                                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-                                        FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE
+                                        FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
+                                        INDEX (order_id),
+                                        INDEX (customer_id)
 );

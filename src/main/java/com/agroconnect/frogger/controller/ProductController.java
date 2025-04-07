@@ -16,7 +16,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        return ResponseEntity.ok(productService.addProduct(product));
+        return ResponseEntity.ok((Product) productService.addProduct(product));
     }
 
     @GetMapping

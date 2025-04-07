@@ -11,7 +11,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -34,14 +34,30 @@ public class Order {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+
+    public Order() {
+
+    }
+
+    public Order(User customer, Product product, int quantity, double totalPrice, OrderStatus orderStatus) {
+        this.customer = customer;
+        this.product = product;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.status = status != null ? status : OrderStatus.PROCESSING;  // Default to PENDING if status is null
+    }
+
+    public Order(BigInteger customerId, Integer productId, int quantity, double totalPrice, OrderStatus orderStatus) {
+    }
+
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public BigInteger getId() { return id; }
+    public void setId(BigInteger id) { this.id = BigInteger.valueOf(id); }
 
-    public BigInteger getCustomerId() { return customer.getId(); }
-    public void setCustomerId(BigInteger id) { this.customer.setId(id); }
+    public Long getCustomerId() { return customer.getId(); }
+    public void setCustomerId(Long id) { this.customer.setId(id); }
 
-    public BigInteger getProductId() { return product.getId(); }
+    public Long getProductId() { return product.getId(); }
     public void setProductId(BigInteger id) { this.product.setId(id); }
 
     public Integer getQuantity() { return quantity; }

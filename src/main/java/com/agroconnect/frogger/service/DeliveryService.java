@@ -7,8 +7,12 @@ import com.agroconnect.frogger.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class DeliveryService {
+public abstract class DeliveryService {
 
     private final DeliveryFactory deliveryFactory;
     private final DeliveryRepository deliveryRepository;
@@ -19,11 +23,17 @@ public class DeliveryService {
         this.deliveryRepository = deliveryRepository;
     }
 
-    public Delivery createDelivery(Integer orderId, Integer deliverymanId, String thirdPartyService, String status) {
+    public Delivery createDelivery(BigInteger orderId, BigInteger deliverymanId, String thirdPartyService, String status) {
         // Use the factory to create a new Delivery object
         Delivery delivery = deliveryFactory.createDelivery(orderId, deliverymanId, thirdPartyService, status);
         return deliveryRepository.save(delivery);  // Save it to the database
     }
+
+    public abstract Delivery createDelivery(BigInteger orderId, BigInteger deliverymanId, String thirdPartyService);
+
+    public abstract List<Delivery> getAllDeliveries();
+
+    public abstract Optional<Delivery> getDeliveryById(BigInteger id);
 
     public Delivery updateDeliveryStatus(Integer deliveryId, String status) {
         Delivery delivery = deliveryRepository.findById(Long.valueOf(deliveryId))
@@ -31,4 +41,6 @@ public class DeliveryService {
         delivery.setDeliveryStatus(DeliveryStatus.valueOf(status));
         return deliveryRepository.save(delivery);  // Save updated status
     }
+
+    public abstract Delivery updateDeliveryStatus(BigInteger id, String status);
 }

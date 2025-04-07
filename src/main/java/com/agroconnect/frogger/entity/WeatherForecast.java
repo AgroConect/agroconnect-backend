@@ -1,8 +1,11 @@
 package com.agroconnect.frogger.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "weather_forecast")
@@ -16,16 +19,16 @@ public class WeatherForecast {
     private String location;
 
     @Column(nullable = false, precision = 5)
-    private Double temperature;
+    private BigDecimal temperature;
 
     @Column(nullable = false, precision = 5)
-    private Double humidity;
+    private BigDecimal humidity;
 
     @Column(nullable = false, precision = 5)
-    private Double precipitation;
+    private BigDecimal precipitation;
 
     @Column(nullable = false)
-    private Date forecastDate;
+    private LocalDate forecastDate;
 
     @Column(nullable = false, length = 255)
     private String suggestedCrop; // New field for crop recommendation
@@ -33,11 +36,22 @@ public class WeatherForecast {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public WeatherForecast(String location, BigDecimal temperature, BigDecimal humidity, BigDecimal precipitation, LocalDate forecastDate) {
+        this.location = location;
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.precipitation = precipitation;
+        this.forecastDate = forecastDate;
+    }
+
+    public WeatherForecast() {
+
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -45,47 +59,41 @@ public class WeatherForecast {
     public String getLocation() {
         return location;
     }
-
     public void setLocation(String location) {
         this.location = location;
     }
 
-    public Double getTemperature() {
+    public BigDecimal getTemperature() {
         return temperature;
     }
-
     public void setTemperature(Double temperature) {
-        this.temperature = temperature;
+        this.temperature = BigDecimal.valueOf(temperature);
     }
 
-    public Double getHumidity() {
+    public BigDecimal getHumidity() {
         return humidity;
     }
-
     public void setHumidity(Double humidity) {
-        this.humidity = humidity;
+        this.humidity = BigDecimal.valueOf(humidity);
     }
 
-    public Double getPrecipitation() {
+    public BigDecimal getPrecipitation() {
         return precipitation;
     }
-
     public void setPrecipitation(Double precipitation) {
-        this.precipitation = precipitation;
+        this.precipitation = BigDecimal.valueOf(precipitation);
     }
 
-    public Date getForecastDate() {
+    public LocalDate getForecastDate() {
         return forecastDate;
     }
-
     public void setForecastDate(Date forecastDate) {
-        this.forecastDate = forecastDate;
+        this.forecastDate = forecastDate.toLocalDate();
     }
 
     public String getSuggestedCrop() {
         return suggestedCrop;
     }
-
     public void setSuggestedCrop(String suggestedCrop) {
         this.suggestedCrop = suggestedCrop;
     }
@@ -93,7 +101,6 @@ public class WeatherForecast {
     public Timestamp getCreatedAt() {
         return createdAt;
     }
-
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }

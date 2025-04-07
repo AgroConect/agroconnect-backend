@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
-public class WeatherForecastService {
+public abstract class WeatherForecastService {
 
     private final WeatherFactory weatherFactory;
     private final WeatherForecastRepository weatherForecastRepository;
@@ -27,7 +28,10 @@ public class WeatherForecastService {
     }
 
     public Object getWeatherByLocation(String location) {
+        return null;
     }
+
+    public abstract List<WeatherForecast> getAllWeatherForecasts();
 
 //    public WeatherForecast getWeatherByLocation(String location) {
 //        return weatherForecastRepository.findByLocation(location)

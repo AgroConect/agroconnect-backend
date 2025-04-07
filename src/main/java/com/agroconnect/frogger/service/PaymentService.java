@@ -7,8 +7,12 @@ import com.agroconnect.frogger.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class PaymentService {
+public abstract class PaymentService {
 
     private final PaymentFactory paymentFactory;
     private final PaymentRepository paymentRepository;
@@ -19,7 +23,7 @@ public class PaymentService {
         this.paymentRepository = paymentRepository;
     }
 
-    public Payment createPayment(Integer orderId, Integer customerId, double amount, String paymentMethod, String status) {
+    public Payment createPayment(BigInteger orderId, BigInteger customerId, double amount, String paymentMethod, String status) {
         // Use the factory to create a new Payment object
         Payment payment = paymentFactory.createPayment(orderId, customerId, amount, paymentMethod, status);
         return paymentRepository.save(payment);  // Save to the database
@@ -33,5 +37,12 @@ public class PaymentService {
     }
 
     public Payment processPayment(Payment payment) {
+        return payment;
     }
+
+    public abstract Payment processPayment(BigInteger orderId, BigInteger customerId, double amount, String paymentMethod);
+
+    public abstract List<Payment> getAllPayments();
+
+    public abstract Optional<Payment> getPaymentById(BigInteger id);
 }

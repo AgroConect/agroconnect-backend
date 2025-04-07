@@ -1,3 +1,4 @@
+-- Step 3: Create the Orders Table
 CREATE TABLE IF NOT EXISTS orders (
                                       id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                                       customer_id BIGINT UNSIGNED NOT NULL,
@@ -7,5 +8,7 @@ CREATE TABLE IF NOT EXISTS orders (
                                       status ENUM('pending', 'processing', 'shipped', 'delivered') DEFAULT 'pending',
                                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                       FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
-                                      FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+                                      FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+                                      INDEX (customer_id),
+                                      INDEX (product_id)
 );

@@ -53,6 +53,7 @@ public class UserService {
     }
 
     public Object registerUser(User user) {
+        return "User registered Successfully";
     }
 }
 
