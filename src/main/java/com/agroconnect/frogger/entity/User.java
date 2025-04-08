@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 @Entity
 @Table(name = "users")

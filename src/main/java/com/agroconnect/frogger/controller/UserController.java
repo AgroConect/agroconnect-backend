@@ -49,7 +49,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         try {
-//            userRepository.save(user);
             userService.registerUser(user);
             return ResponseEntity.ok(user.getFirstName() + " " + user.getLastName()+" registered successfully");
         } catch (Exception e) {

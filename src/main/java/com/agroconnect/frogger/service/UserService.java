@@ -12,16 +12,12 @@ import java.util.Optional;
 
 public interface UserService {
 
-//    User registerUser(String firstname, String lastname, String email, String password, String role, String street, String city, String state, String postcode, String phoneNumber);
-
     List<User> getAllUsers();
 
     Optional<User> getUserById(BigInteger id);
 
     void authenticateUser(String email, String password);
 
-//    User updateUser(BigInteger id, String firstname, String lastname, String street, String city, String state, String postcode, String phoneNumber);
-    
     void deleteUser(BigInteger id);
 
     void registerUser(User user);
@@ -29,9 +25,6 @@ public interface UserService {
     void updateUser(BigInteger id, User updatedUser);
 
     void patchUser(BigInteger id, Map<String, Object> updates);
-
-//    Object registerUser(User user);
-
 
 }
 

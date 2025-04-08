@@ -28,13 +28,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-//    @Override
-//    public User registerUser(String firstname, String lastname, String email, String password, String role, String street, String city, String state, String postcode, String phoneNumber) {
-//        String fRole = role.toUpperCase();
-//        User user = new User(firstname, lastname, email, passwordEncoder.encode(password), fRole, street, city, state, postcode, phoneNumber);
-//        return userRepository.save(user);
-//    }
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -64,23 +57,6 @@ public class UserServiceImpl implements UserService {
 //
 //        return null; // Authentication failed
     }
-
-//    @Override
-//    public User updateUser(BigInteger id, String firstname, String lastname, String street, String city, String state, String postcode, String phoneNumber) {
-//        Optional<User> existingUser = userRepository.findById(id);
-//        if (existingUser.isPresent()) {
-//            User user = existingUser.get();
-//            user.setFirstName(firstname);
-//            user.setLastName(lastname);
-//            user.setStreet(street);
-//            user.setCity(city);
-//            user.setState(state);
-//            user.setPostcode(postcode);
-//            user.setPhoneNumber(phoneNumber);
-//            return userRepository.save(user);
-//        }
-//        return null;
-//    }
 
 
     @Override
