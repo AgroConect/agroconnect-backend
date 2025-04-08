@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @Column(nullable = false, length = 100)
     private String firstname;
@@ -28,9 +28,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-
-    @Column(nullable = false, length = 255)
-    private String address;
 
     @Column(nullable = false, length = 255)
     private String street;
@@ -69,8 +66,9 @@ public class User {
     }
 
 
+
     // Getters and Setters
-    public Long getId() { return id; }
+    public BigInteger getId() { return id; }
     public void setId(BigInteger id) { this.id = id; }
 
     public String getFirstName() { return firstname; }

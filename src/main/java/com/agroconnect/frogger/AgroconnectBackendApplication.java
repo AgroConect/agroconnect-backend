@@ -7,26 +7,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-@RestController
+//@SpringBootApplication
+//@RestController
+//public class AgroconnectBackendApplication {
+//
+//	public static void main(String[] args) {
+//		// Load environment variables from the .env file
+//		Dotenv dotenv = Dotenv.load();
+//
+//		// You can optionally print the values to verify that they are loaded correctly
+//		System.out.println("DB URL: " + dotenv.get("DB_URL"));
+//		System.out.println("DB Username: " + dotenv.get("DB_USERNAME"));
+//		System.out.println("DB Password: " + dotenv.get("DB_PASSWORD"));
+//
+//		// Run Spring Boot application
+//		SpringApplication.run(AgroconnectBackendApplication.class, args);
+//	}
+//
+//
+//	@GetMapping("/hello")
+//	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+//		return String.format("Hello %s!", name);
+//	}
+//}
+
+@SpringBootApplication(scanBasePackages = "com.agroconnect.frogger")
 public class AgroconnectBackendApplication {
-
 	public static void main(String[] args) {
-		// Load environment variables from the .env file
-		Dotenv dotenv = Dotenv.load();
-
-		// You can optionally print the values to verify that they are loaded correctly
-		System.out.println("DB URL: " + dotenv.get("DB_URL"));
-		System.out.println("DB Username: " + dotenv.get("DB_USERNAME"));
-		System.out.println("DB Password: " + dotenv.get("DB_PASSWORD"));
-
-		// Run Spring Boot application
 		SpringApplication.run(AgroconnectBackendApplication.class, args);
-	}
-
-
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
+		System.out.println("🚀 AgroConnect Backend is running on http://localhost:8000/");
 	}
 }

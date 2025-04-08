@@ -1,59 +1,37 @@
 package com.agroconnect.frogger.service;
 
 import com.agroconnect.frogger.entity.User;
-import com.agroconnect.frogger.factory.UserFactory;
-import com.agroconnect.frogger.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 
-public class UserService {
+public interface UserService {
 
-    private final UserFactory userFactory;
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+//    User registerUser(String firstname, String lastname, String email, String password, String role, String street, String city, String state, String postcode, String phoneNumber);
 
-    @Autowired
-    public UserService(UserFactory userFactory, UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userFactory = userFactory;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    List<User> getAllUsers();
 
-    public User registerUser(String name, String email, String password, String role, String address, String postcode, String phoneNumber) {
-        String hashedPassword = passwordEncoder.encode(password);
-        User user = userFactory.createUser(name, email, hashedPassword, role, address, postcode, phoneNumber);
-        return userRepository.save(user);
-    }
+    Optional<User> getUserById(BigInteger id);
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    void authenticateUser(String email, String password);
 
-    public Optional<User> getUserById(Integer id) {
-        return userRepository.findById(Long.valueOf(id));
-    }
+//    User updateUser(BigInteger id, String firstname, String lastname, String street, String city, String state, String postcode, String phoneNumber);
+    
+    void deleteUser(BigInteger id);
 
-    public User updateUser(Integer id, String name, String address, String postcode, String phoneNumber) {
-        User user = userRepository.findById(Long.valueOf(id))
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setName(name);
-        user.setAddress(address);
-        user.setPostcode(postcode);
-        user.setPhoneNumber(phoneNumber);
-        return userRepository.save(user);
-    }
+    void registerUser(User user);
 
-    public void deleteUser(Integer id) {
-        userRepository.deleteById(Long.valueOf(id));
-    }
+    void updateUser(BigInteger id, User updatedUser);
 
-    public Object registerUser(User user) {
-        return "User registered Successfully";
-    }
+    void patchUser(BigInteger id, Map<String, Object> updates);
+
+//    Object registerUser(User user);
+
+
 }
 

@@ -4,5 +4,9 @@ public enum Role {
     ADMIN,
     FARMER,
     CUSTOMER,
-    DELIVERYMAN
+    DELIVERYMAN,
+    admin,
+    farmer,
+    customer,
+    deliveryman,
 }
