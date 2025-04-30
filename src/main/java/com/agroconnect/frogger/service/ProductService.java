@@ -1,61 +1,30 @@
 package com.agroconnect.frogger.service;
 
-import com.agroconnect.frogger.entity.Category;
 import com.agroconnect.frogger.entity.Product;
-import com.agroconnect.frogger.entity.Status;
-import com.agroconnect.frogger.factory.ProductFactory;
-import com.agroconnect.frogger.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class ProductService {
+public interface ProductService {
 
-    private final ProductFactory productFactory;
-    private final ProductRepository productRepository;
+    Product addProduct(Product product, BigInteger farmerId);
 
-    @Autowired
-    public ProductService(ProductFactory productFactory, ProductRepository productRepository) {
-        this.productFactory = productFactory;
-        this.productRepository = productRepository;
-    }
+    List<Product> getAllProducts();
 
-    public Product addProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status) {
-        Product product = productFactory.createProduct(farmerId, name, category, price, quantity, status);
-        return productRepository.save(product);
-    }
+    Optional<Product> getProductById(BigInteger id);
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
+//    Product updateProduct(BigInteger id, String name, String category, Double price, Integer quantity, String status);
 
-    public Optional<Product> getProductById(Integer id) {
-        return productRepository.findById(Long.valueOf(id));
-    }
-
-    public List<Product> getProductsByFarmer(Integer farmerId) {
-        return productRepository.findByFarmer_Id(BigInteger.valueOf(farmerId));
-    }
-
-    public Product updateProduct(BigInteger id, String name, String category, double price, int quantity, String status) {
-        Product product = productRepository.findById(Long.valueOf(String.valueOf(id)))
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-        product.setName(name);
-        product.setCategory(Category.valueOf(category));
-        product.setPrice(price);
-        product.setQuantity(quantity);
-        product.setStatus(Status.valueOf(status));
-        return productRepository.save(product);
-    }
-
-    public void deleteProduct(Integer id) {
-        productRepository.deleteById(Long.valueOf(id));
-    }
-
-    public Object addProduct(Product product) {
-    }
+//    void deleteProduct(BigInteger id);
+//
+//    void updateProduct(BigInteger id, Product updatedProduct);
+//
+//    Product patchProduct(BigInteger id, Map<String,Object> updates);
+void updateProduct(BigInteger id, Product updatedProduct, String currentUserEmail);
+    Product patchProduct(BigInteger id, Map<String, Object> updates, String currentUserEmail);
+    void deleteProduct(BigInteger id, String currentUserEmail);
 }
