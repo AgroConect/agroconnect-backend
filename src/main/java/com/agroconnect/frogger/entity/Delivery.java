@@ -11,7 +11,7 @@ public class Delivery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @OneToOne
     @JoinColumn(name = "order_id", nullable = false)
@@ -31,14 +31,14 @@ public class Delivery {
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public BigInteger getId() { return id; }
+    public void setId(BigInteger id) { this.id = id; }
 
-    public Long getOrderId() { return order.getId(); }
-    public void setOrderId(Long id) { this.order.setId(id); }
+    public BigInteger getOrderId() { return order.getId(); }
+    public void setOrderId(BigInteger id) { this.order.setId(id); }
 
     public BigInteger getDeliverymanId() { return deliveryman.getId(); }
-    public void setDeliverymanId(Long id) { this.deliveryman.setId(BigInteger.valueOf(id)); }
+    public void setDeliverymanId(BigInteger id) { this.deliveryman.setId(id); }
 
     public String getThirdPartyService() { return thirdPartyService; }
     public void setThirdPartyService(String thirdPartyService) { this.thirdPartyService = thirdPartyService; }

@@ -4,5 +4,9 @@ public enum Role {
     ADMIN,
     FARMER,
     CUSTOMER,
-    DELIVERYMAN
+    DELIVERYMAN;
+
+    public static Role fromString(String value) {
+        return Role.valueOf(value.toUpperCase());
+    }
 }

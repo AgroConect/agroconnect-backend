@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 @Entity
 @Table(name = "products")
@@ -19,6 +20,9 @@ public class Product {
 
     @Column(nullable = false, length = 255)
     private String name;
+
+    @Column(length = 512)
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,12 +40,47 @@ public class Product {
     @Column(updatable = false)
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
+    public Product(User farmer, String name, Category category, Double price, int quantity, Status status) {
+        this.farmer = farmer;
+        this.name = name;
+        this.category = category;;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status != null ? status : Status.AVAILABLE;  // Default to AVAILABLE if status is null
+    }
+
+    public Product() {
+
+    }
+
     // Getters and Setters
     public BigInteger getId() { return id; }
     public void setId(BigInteger id) { this.id = id; }
 
-    public BigInteger getFarmerId() { return farmer.getId(); }
-    public void setFarmerId(Long id) { this.farmer.setId(BigInteger.valueOf(id)); }
+//    public BigInteger getFarmerId() { return farmer.getId(); }
+//    public void setFarmerId(BigInteger id) { this.farmer.setId(id); }
+
+    public User getFarmer() {
+        return farmer;
+    }
+    public void setFarmer(User farmer) {
+        this.farmer = farmer;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+//    public BigInteger getFarmer() {
+//        return getFarmerId();
+//    }
+//    public void setFarmer(User farmer) {
+//        this.farmer = farmer;
+//    }
+
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -59,4 +98,6 @@ public class Product {
     public void setStatus(Status status) { this.status = status; }
 
     public Timestamp getCreatedAt() { return createdAt; }
+
+
 }
