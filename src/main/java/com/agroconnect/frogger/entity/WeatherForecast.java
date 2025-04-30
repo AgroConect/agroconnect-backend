@@ -3,6 +3,7 @@ package com.agroconnect.frogger.entity;
 import jakarta.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "weather_forecast")
@@ -50,7 +51,7 @@ public class WeatherForecast {
         this.location = location;
     }
 
-    public Double getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 
@@ -58,7 +59,7 @@ public class WeatherForecast {
         this.temperature = temperature;
     }
 
-    public Double getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
@@ -66,7 +67,7 @@ public class WeatherForecast {
         this.humidity = humidity;
     }
 
-    public Double getPrecipitation() {
+    public double getPrecipitation() {
         return precipitation;
     }
 
@@ -74,8 +75,8 @@ public class WeatherForecast {
         this.precipitation = precipitation;
     }
 
-    public Date getForecastDate() {
-        return forecastDate;
+    public LocalDate getForecastDate() {
+        return forecastDate.toLocalDate();
     }
 
     public void setForecastDate(Date forecastDate) {
