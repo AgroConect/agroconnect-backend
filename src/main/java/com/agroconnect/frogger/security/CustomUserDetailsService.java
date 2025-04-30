@@ -3,6 +3,7 @@ package com.agroconnect.frogger.security;
 import com.agroconnect.frogger.entity.User;
 import com.agroconnect.frogger.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())
-                .authorities(user.getRole().name())
+                .authorities(new SimpleGrantedAuthority(user.getRole().name()))
+//                .authorities(user.getRole().name())
                 .accountExpired(false)
                 .accountLocked(false)
                 .credentialsExpired(false)

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS deliveries (
                                           order_id BIGINT UNSIGNED NOT NULL,
                                           deliveryman_id BIGINT UNSIGNED NULL,
                                           third_party_service TEXT NULL,
-                                          status ENUM('pending', 'out for delivery', 'delivered') DEFAULT 'pending',
+                                          status ENUM('PENDING', 'OUT_FOR_DELIVERY', 'DELIVERED') DEFAULT 'PENDING',
                                           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                           FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
                                           FOREIGN KEY (deliveryman_id) REFERENCES users(id) ON DELETE SET NULL,

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -35,6 +36,7 @@ public class ProductController {
             product.setPrice(Double.valueOf(payload.get("price").toString()));
             product.setQuantity(Integer.valueOf(payload.get("quantity").toString()));
             product.setStatus(Status.fromString(payload.get("status").toString()));
+            product.setImageUrl(payload.get("imageUrl") != null ? payload.get("imageUrl").toString() : null);
 
             Product savedProduct = productService.addProduct(product, farmerId);
 
@@ -112,33 +114,76 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getProductById(@PathVariable BigInteger id) {
+    public ResponseEntity<Product> getProductById(@PathVariable BigInteger id) {
         return productService.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable BigInteger id, @RequestBody Product updatedProduct) {
+    public ResponseEntity<String> updateProduct(@PathVariable BigInteger id, @RequestBody Product updatedProduct, Principal principal) {
         try {
-            productService.updateProduct(id, updatedProduct);
+            productService.updateProduct(id, updatedProduct, principal.getName());
             return ResponseEntity.ok("Product updated successfully");
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Product not found");
+        } catch (RuntimeException e) { // 🔥 Handle Access Denied nicely
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: " + e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating product: " + e.getMessage());
         }
     }
 
-
     @PatchMapping("/{id}")
-    public ResponseEntity<Product> patchProduct(@PathVariable BigInteger id, @RequestBody Map<String, Object> updates) {
-        return ResponseEntity.ok(productService.patchProduct(id, updates));
+    public ResponseEntity<?> patchProduct(@PathVariable BigInteger id, @RequestBody Map<String, Object> updates, Principal principal) {
+        try {
+            Product patchedProduct = productService.patchProduct(id, updates, principal.getName());
+            return ResponseEntity.ok(patchedProduct);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Product not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error patching product: " + e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable BigInteger id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.ok("Product deleted successfully.");
+    public ResponseEntity<String> deleteProduct(@PathVariable BigInteger id, Principal principal) {
+        try {
+            productService.deleteProduct(id, principal.getName());
+            return ResponseEntity.ok("Product deleted successfully.");
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Product not found");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting product: " + e.getMessage());
+        }
     }
+
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<String> updateProduct(@PathVariable BigInteger id, @RequestBody Product updatedProduct) {
+//        try {
+//            productService.updateProduct(id, updatedProduct);
+//            return ResponseEntity.ok("Product updated successfully");
+//        } catch (NoSuchElementException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Product not found");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating product: " + e.getMessage());
+//        }
+//    }
+//
+//
+//    @PatchMapping("/{id}")
+//    public ResponseEntity<Product> patchProduct(@PathVariable BigInteger id, @RequestBody Map<String, Object> updates) {
+//        return ResponseEntity.ok(productService.patchProduct(id, updates));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<String> deleteProduct(@PathVariable BigInteger id) {
+//        productService.deleteProduct(id);
+//        return ResponseEntity.ok("Product deleted successfully.");
+//    }
 }

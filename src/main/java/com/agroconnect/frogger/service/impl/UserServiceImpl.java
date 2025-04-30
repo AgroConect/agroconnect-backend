@@ -38,10 +38,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
-//    @Override
-//    public Optional<User> getUserByEmail(String email) {
-//        return userRepository.findByEmail(email);
-//    }
 
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
@@ -87,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User registerUser(User user) {
         // Ensure role is stored as uppercase
-        user.setRole(Role.valueOf(user.getRole().toString().toUpperCase()));
+        user.setRole(Role.fromString(user.getRole().name()));
         // Encrypt password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // Save user to the database

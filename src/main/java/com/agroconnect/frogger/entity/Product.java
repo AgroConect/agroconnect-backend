@@ -21,6 +21,9 @@ public class Product {
     @Column(nullable = false, length = 255)
     private String name;
 
+    @Column(length = 512)
+    private String imageUrl;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Category category;
@@ -54,30 +57,30 @@ public class Product {
     public BigInteger getId() { return id; }
     public void setId(BigInteger id) { this.id = id; }
 
-    public BigInteger getFarmerId() { return farmer.getId(); }
-//public BigInteger getFarmerId() {
-//    return (farmer != null) ? farmer.getId() : null;
-//}
-    public void setFarmerId(BigInteger id) { this.farmer.setId(id); }
+//    public BigInteger getFarmerId() { return farmer.getId(); }
+//    public void setFarmerId(BigInteger id) { this.farmer.setId(id); }
 
-
-    public BigInteger getFarmer() {
-        return getFarmerId();
+    public User getFarmer() {
+        return farmer;
     }
     public void setFarmer(User farmer) {
         this.farmer = farmer;
     }
 
-//    public BigInteger getFarmerId() {
-//        return (farmer != null) ? farmer.getId() : null;  // Avoids NullPointerException
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+//    public BigInteger getFarmer() {
+//        return getFarmerId();
 //    }
-//
-//    public void setFarmerId(Optional<User> id) {
-//        if (this.farmer == null) {  // Ensure farmer is initialized before setting ID
-//            this.farmer = new User();
-//        }
-//        this.farmer.setId(id);
+//    public void setFarmer(User farmer) {
+//        this.farmer = farmer;
 //    }
+
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

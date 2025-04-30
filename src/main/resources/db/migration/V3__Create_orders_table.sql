@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS orders (
                                       product_id BIGINT UNSIGNED NOT NULL,
                                       quantity INT NOT NULL,
                                       total_price DECIMAL(10,2) NOT NULL,
-                                      status ENUM('pending', 'processing', 'shipped', 'delivered') DEFAULT 'pending',
+                                      status ENUM('PENDING', 'SHIPPED', 'DELIVERED') DEFAULT 'PENDING',
                                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                       FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
                                       FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,

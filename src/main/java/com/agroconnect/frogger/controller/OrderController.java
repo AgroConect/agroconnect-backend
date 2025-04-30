@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,22 +17,17 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-//    @PostMapping
-//    public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
-//        return ResponseEntity.ok((Order) orderService.placeOrder(order));
-//    }
-@PostMapping
-public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
-    BigInteger customerId = order.getCustomerId();
-    BigInteger productId = order.getProductId();
-    int quantity = order.getQuantity();
-
-    Order newOrder = orderService.placeOrder(customerId, productId, quantity);
-    return ResponseEntity.ok(newOrder);
-}
+    @PostMapping
+    public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
+        return ResponseEntity.ok((Order) orderService.placeOrder(order));
+    }
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Order>> getOrderById(@PathVariable Long id) {
-        return ResponseEntity.ok(Optional.ofNullable(orderService.getOrderById(BigInteger.valueOf(id))));
+    public ResponseEntity <Order> getOrderById(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getOrderById(BigInteger.valueOf(id)));
     }
 }

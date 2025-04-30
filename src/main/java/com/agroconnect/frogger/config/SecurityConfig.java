@@ -5,6 +5,7 @@ import com.agroconnect.frogger.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -50,6 +51,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()  // Public routes
+                        // 🔥 Products rules
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()  // Everyone can view
+                        .requestMatchers(HttpMethod.POST, "/api/products/**").hasAnyAuthority("ADMIN") // Only ADMIN and FARMER can add
+                        .requestMatchers(HttpMethod.PUT, "/api/products/**").hasAnyAuthority("ADMIN")  // Only ADMIN and FARMER can edit
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAnyAuthority("ADMIN") // Only ADMIN and FARMER can delete
+
+                        // 🔥 Users routes
+                        .requestMatchers("/api/users/**").hasAuthority("ADMIN")  // Only ADMIN can view all users
+//                      .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()  // Everything else must be authenticated
                 )
                 .sessionManagement(session -> session

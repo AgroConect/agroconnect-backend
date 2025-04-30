@@ -38,6 +38,12 @@ public class Order {
     public BigInteger getId() { return id; }
     public void setId(BigInteger id) { this.id = id; }
 
+    public User getCustomer() { return customer; }
+    public void setCustomer(User customer) { this.customer = customer; }
+
+    public Product getProduct() { return product; }
+    public void setProduct(Product product) { this.product = product; }
+
     public BigInteger getCustomerId() { return customer.getId(); }
     public void setCustomerId(BigInteger id) { this.customer.setId(id); }
 

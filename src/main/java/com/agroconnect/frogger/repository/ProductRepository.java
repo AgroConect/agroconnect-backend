@@ -12,18 +12,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, BigInteger> {
     List<Product> findByCategory(Category category);  // Get products by category
 
     List<Product> findByStatus(Status status);      // Get available products
     List<Product> findByFarmer_Id(BigInteger farmerId);
     List<Product> findByFarmer(User farmerId);
 
-    Optional<Object> findById(BigInteger productId);
+    Optional<Product> findById(BigInteger productId);
 
     void deleteById(BigInteger id);
 
     boolean existsById(BigInteger id);
 
-//    Optional<Object> findById(BigInteger productId);
 }

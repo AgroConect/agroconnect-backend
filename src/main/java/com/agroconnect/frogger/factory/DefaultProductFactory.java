@@ -11,12 +11,13 @@ import java.math.BigInteger;
 public class DefaultProductFactory implements ProductFactory {
 
     @Override
-    public Product createProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status) {
+    public Product createProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status, String imageUrl) {
         Product product = new Product();
         product.setName(name);
         product.setCategory(Category.fromString(category));
         product.setPrice(price);
         product.setQuantity(quantity);
+        product.setImageUrl(imageUrl);
         product.setStatus(Status.fromString(status));
         return product;
     }
