@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,9 +21,13 @@ public class OrderController {
     public ResponseEntity<Order> placeOrder(@RequestBody Order order) {
         return ResponseEntity.ok((Order) orderService.placeOrder(order));
     }
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Order>> getOrderById(@PathVariable Long id) {
+    public ResponseEntity <Order> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrderById(BigInteger.valueOf(id)));
     }
 }
