@@ -129,6 +129,11 @@ public class UserController {
         userRepository.save(user);
         return ResponseEntity.ok("User saved successfully");
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("You are authenticated!");
+    }
 }
 
 

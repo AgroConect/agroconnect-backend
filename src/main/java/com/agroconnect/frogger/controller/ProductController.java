@@ -25,20 +25,40 @@ public class ProductController {
     private UserRepository userRepository;
 
     @PostMapping("/add-products")
-    public ResponseEntity<String> addProduct(Product product) {
-        // Assuming you're associating a farmer with the product
-        Optional<User> farmer = userRepository.findById(product.getFarmer());
-        if (farmer.isPresent()) {
-            product.setFarmer(farmer); // Associate the farmer with the product
-            productService.addProduct(product);
-            return ResponseEntity.ok(product.getName()+ "Added successfully");
-//            return productRepository.save(product);
-//            Product savedProduct = productService.addProduct(product);
-//            return ResponseEntity.ok(savedProduct);
-        } else {
-            throw new NoSuchElementException("Farmer not found for id: " + product.getFarmerId());
+    public ResponseEntity<?> addProduct(@RequestBody Map<String, Object> payload) {
+        try {
+            BigInteger farmerId = new BigInteger(payload.get("farmerId").toString());
+
+            Product product = new Product();
+            product.setName(payload.get("name").toString());
+            product.setCategory(Category.fromString(payload.get("category").toString()));
+            product.setPrice(Double.valueOf(payload.get("price").toString()));
+            product.setQuantity(Integer.valueOf(payload.get("quantity").toString()));
+            product.setStatus(Status.fromString(payload.get("status").toString()));
+
+            Product savedProduct = productService.addProduct(product, farmerId);
+
+            // ✅ Return a success message instead of serializing the raw entity
+            return ResponseEntity.ok("Product saved successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error saving product: " + e.getMessage());
         }
     }
+//    public ResponseEntity<String> addProduct(Product product, BigInteger farmerId) {
+//        // Assuming you're associating a farmer with the product
+//        Optional<User> farmer = userRepository.findById(product.getFarmer());
+//        if (farmer.isPresent()) {
+//            product.setFarmer(farmer); // Associate the farmer with the product
+//            productService.addProduct(product, farmerId);
+//            return ResponseEntity.ok(product.getName()+ "Added successfully");
+////            return productRepository.save(product);
+////            Product savedProduct = productService.addProduct(product);
+////            return ResponseEntity.ok(savedProduct);
+//        } else {
+//            throw new NoSuchElementException("Farmer not found for id: " + product.getFarmerId());
+//        }
+//    }
 //    public ResponseEntity<?> addProduct(@RequestBody Product product) {
 //        try {
 //            // Check if farmer exists before assigning

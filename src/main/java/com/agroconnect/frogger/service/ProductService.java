@@ -11,7 +11,9 @@ import java.util.Optional;
 @Service
 public interface ProductService {
 
-    Product addProduct(Product product);
+    Product addProduct(Product product, BigInteger farmerId);
+
+//    Product addProduct(Product product, BigInteger farmerId);
 
     List<Product> getAllProducts();
 

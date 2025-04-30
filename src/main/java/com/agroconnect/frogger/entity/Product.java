@@ -40,7 +40,7 @@ public class Product {
     public Product(User farmer, String name, Category category, Double price, int quantity, Status status) {
         this.farmer = farmer;
         this.name = name;
-        this.category = category;
+        this.category = category;;
         this.price = price;
         this.quantity = quantity;
         this.status = status != null ? status : Status.AVAILABLE;  // Default to AVAILABLE if status is null
@@ -55,13 +55,18 @@ public class Product {
     public void setId(BigInteger id) { this.id = id; }
 
     public BigInteger getFarmerId() { return farmer.getId(); }
+//public BigInteger getFarmerId() {
+//    return (farmer != null) ? farmer.getId() : null;
+//}
     public void setFarmerId(BigInteger id) { this.farmer.setId(id); }
 
 
     public BigInteger getFarmer() {
         return getFarmerId();
     }
-    public void setFarmer(Optional<User> farmer) {}
+    public void setFarmer(User farmer) {
+        this.farmer = farmer;
+    }
 
 //    public BigInteger getFarmerId() {
 //        return (farmer != null) ? farmer.getId() : null;  // Avoids NullPointerException

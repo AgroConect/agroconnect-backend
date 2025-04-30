@@ -16,11 +16,17 @@ public interface UserService {
 
     Optional<User> getUserById(BigInteger id);
 
+    User getUserByEmail(String email);
+
+    Optional<User> getFirstName(String firstname);
+
+    Optional<User> getLastName(String lastname);
+
     void authenticateUser(String email, String password);
 
     void deleteUser(BigInteger id);
 
-    void registerUser(User user);
+    User registerUser(User user);
 
     void updateUser(BigInteger id, User updatedUser);
 

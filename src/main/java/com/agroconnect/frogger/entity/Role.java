@@ -9,4 +9,6 @@ public enum Role {
     farmer,
     customer,
     deliveryman,
+    ;
+
 }

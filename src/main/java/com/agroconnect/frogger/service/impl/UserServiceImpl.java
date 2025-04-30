@@ -38,6 +38,26 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
+//    @Override
+//    public Optional<User> getUserByEmail(String email) {
+//        return userRepository.findByEmail(email);
+//    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    @Override
+    public Optional<User> getFirstName(String firstname) {
+        return userRepository.findByFirstname(firstname);
+    }
+
+    @Override
+    public Optional<User> getLastName(String lastname) {
+        return userRepository.findByLastname(lastname);
+    }
+
     @Override
     public void authenticateUser(String email, String password) {
 //        Optional<User> userOptional = userRepository.findByEmail(email);
@@ -65,13 +85,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerUser(User user) {
+    public User registerUser(User user) {
         // Ensure role is stored as uppercase
         user.setRole(Role.valueOf(user.getRole().toString().toUpperCase()));
         // Encrypt password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // Save user to the database
         userRepository.save(user);
+        return user;
     }
 
     @Override

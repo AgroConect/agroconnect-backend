@@ -3,35 +3,37 @@ package com.agroconnect.frogger.service.impl;
 import com.agroconnect.frogger.entity.Category;
 import com.agroconnect.frogger.entity.Product;
 import com.agroconnect.frogger.entity.Status;
-import com.agroconnect.frogger.factory.ProductFactory;
+import com.agroconnect.frogger.entity.User;
 import com.agroconnect.frogger.repository.ProductRepository;
 import com.agroconnect.frogger.repository.UserRepository;
 import com.agroconnect.frogger.service.ProductService;
+
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final UserRepository userRepository; // Inject UserRepository
+    private final UserRepository userRepository;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
-        this.userRepository = userRepository;  // Ensure it's injected here
+        this.userRepository = userRepository;
     }
 
     @Override
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product, BigInteger farmerId) {
+        User farmer = userRepository.findById(farmerId)
+                .orElseThrow(() -> new NoSuchElementException("Farmer not found with ID: " + farmerId));
+
+        product.setFarmer(farmer); // ✅ Link actual User object to the product
         return productRepository.save(product);
     }
 
@@ -76,10 +78,8 @@ public class ProductServiceImpl implements ProductService {
             }
         });
 
-        productRepository.save(existingProduct);
-        return existingProduct;
+        return productRepository.save(existingProduct);
     }
-
 
     @Override
     public void deleteProduct(BigInteger id) {

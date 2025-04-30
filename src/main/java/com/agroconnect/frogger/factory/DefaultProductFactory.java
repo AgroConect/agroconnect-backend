@@ -14,11 +14,10 @@ public class DefaultProductFactory implements ProductFactory {
     public Product createProduct(BigInteger farmerId, String name, String category, double price, int quantity, String status) {
         Product product = new Product();
         product.setName(name);
-        product.setCategory(Category.valueOf(category));
+        product.setCategory(Category.fromString(category));
         product.setPrice(price);
         product.setQuantity(quantity);
-        product.setStatus(Status.valueOf(status));
-
+        product.setStatus(Status.fromString(status));
         return product;
     }
 }
