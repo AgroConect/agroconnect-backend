@@ -13,24 +13,31 @@ public class DefaultUserFactory implements UserFactory {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User createUser(String name, String email, String password, String role, String address, String postcode, String phoneNumber) {
+    public User createUser(String firstname, String lastname, String email, String password, String role, String street, String city, String state, String postcode, String phoneNumber) {
         User user = new User();
-        user.setName(name);
+        user.setFirstName(firstname);
+        user.setLastName(lastname);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password)); // Hash the password
-        user.setRole(Role.valueOf(role));
+        user.setRole(Role.valueOf(role.toUpperCase()));
 
         // Set default values based on the role
         if ("farmer".equals(role)) {
-            user.setAddress("Default Farmer Address");
+            user.setStreet("Default Farmer Street");
+            user.setCity("Default Farmer City");
+            user.setState("Default Farmer State");
             user.setPostcode("00000");
             user.setPhoneNumber("0000000000");
         } else if ("customer".equals(role)) {
-            user.setAddress("Default Customer Address");
+            user.setStreet("Default Customer Street");
+            user.setCity("Default Customer City");
+            user.setState("Default Customer State");
             user.setPostcode("00001");
             user.setPhoneNumber("1111111111");
         } else if ("deliveryman".equals(role)) {
-            user.setAddress("Default Delivery Address");
+            user.setStreet("Default Delivery Street");
+            user.setCity("Default Delivery City");
+            user.setState("Default Delivery State");
             user.setPostcode("00002");
             user.setPhoneNumber("2222222222");
         }
@@ -38,4 +45,8 @@ public class DefaultUserFactory implements UserFactory {
         return user;
     }
 
+//    @Override
+//    public User createUser(String firstname, String lastname, String email, String password, String role, String street, String city, String state, String postcode, String phoneNumber) {
+//        return null;
+//    }
 }
