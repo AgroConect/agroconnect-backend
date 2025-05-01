@@ -1,5 +1,6 @@
 package com.agroconnect.frogger.controller;
 
+import com.agroconnect.frogger.entity.Role;
 import com.agroconnect.frogger.entity.User;
 import com.agroconnect.frogger.repository.UserRepository;
 import com.agroconnect.frogger.security.JwtUtil;
@@ -46,6 +47,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
+//            user.setRole(Role.valueOf(user.getRole().toUpperCase()));
             User savedUser = userService.registerUser(user);
             String token = jwtUtil.generateToken(savedUser);
 
