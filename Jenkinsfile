@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/AgroConect/agroconnect-backend'
+        git branch: 'development', url: 'https://github.com/AgroConect/agroconnect-backend'
       }
     }
 
