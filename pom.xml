@@ -27,7 +27,8 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -108,17 +109,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.flywaydb</groupId>-->
+<!--				<artifactId>flyway-maven-plugin</artifactId>-->
+<!--				<version>10.20.1</version>-->
+<!--				<configuration>-->
+<!--					<url>jdbc:mysql://localhost:3306/agroconnect_db</url>-->
+<!--					<user>agro_admin</user>-->
+<!--					<password>SecurePass4</password>-->
+<!--					<driver>com.mysql.cj.jdbc.Driver</driver>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<version>10.20.1</version>
-				<configuration>
-					<url>jdbc:mysql://localhost:3306/agroconnect_db</url>
-					<user>agro_admin</user>
-					<password>SecurePass4</password>
-					<driver>com.mysql.cj.jdbc.Driver</driver>
-				</configuration>
-			</plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.13.0</version>
+			<configuration>
+				<release>17</release> <!-- Change this to match your installed Java version -->
+			</configuration>
+		</plugin>
+
+
 		</plugins>
 
 	</build>
