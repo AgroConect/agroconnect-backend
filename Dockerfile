@@ -1,14 +1,14 @@
-# Use OpenJDK as base image
-FROM eclipse-temurin:17-jdk-alpine
+# Start from an OpenJDK base image
+FROM openjdk:17-jdk-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy JAR
+# Copy the jar file into the container
 COPY target/agroconnect-backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose port
+# Expose port 8080 (or whatever port your app uses)
 EXPOSE 8080
 
-# Run the JAR
+# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
