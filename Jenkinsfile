@@ -8,11 +8,11 @@ pipeline {
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/AgroConect/agroconnect-backend.git'
-            }
-        }
+//         stage('Clone Repository') {
+//             steps {
+//                 git 'https://github.com/AgroConect/agroconnect-backend.git'
+//             }
+//         }
 
         stage('Build Spring Boot App') {
             steps {
