@@ -24,28 +24,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-//    @PostMapping("/register")
-//    public ResponseEntity<User> registerUser(@RequestBody User user) {
-////        userRepository.save(user);
-//
-//        return ResponseEntity.ok((User) userService.registerUser(user));
-//    }
-
-//    @PostMapping("/register")
-//    public ResponseEntity<String> registerUser(@RequestBody User user) {
-//        try {
-//            User savedUser = (User) userService.registerUser(user);
-//            return ResponseEntity.ok("User registered successfully with ID: " + savedUser.getId());
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error saving user: " + e.getMessage());
-//        }
-//    }
-
-//            userRepository.save(user);
-////            return ResponseEntity.ok("User saved successfully");
-////            User savedUser = (User) userService.registerUser();
-//            return ResponseEntity.ok("User registered successfully with ID: " + user.getId());
-
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         try {
@@ -66,11 +44,6 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials: " + e.getMessage());
         }
-//        if (user != null) {
-//            return ResponseEntity.ok("Login successful! Welcome " + user.getFirstName() + " " + user.getLastName());
-//        } else {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
-//        }
     }
 
     // Get All Users

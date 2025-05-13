@@ -56,6 +56,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void authenticateUser(String email, String password) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
+        }
+    }
+
+//    @Override
+//    public void authenticateUser(String email, String password) {
 //        Optional<User> userOptional = userRepository.findByEmail(email);
 //
 //        if (userOptional.isPresent()) {
@@ -72,7 +82,7 @@ public class UserServiceImpl implements UserService {
 //        }
 //
 //        return null; // Authentication failed
-    }
+//    }
 
 
     @Override

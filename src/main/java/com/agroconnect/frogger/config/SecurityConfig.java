@@ -18,6 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class SecurityConfig {
 
@@ -48,16 +50,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()  // Public routes
-                        // 🔥 Products rules
+                        // Products rules
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()  // Everyone can view
                         .requestMatchers(HttpMethod.POST, "/api/products/**").hasAnyAuthority("ADMIN") // Only ADMIN and FARMER can add
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasAnyAuthority("ADMIN")  // Only ADMIN and FARMER can edit
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasAnyAuthority("ADMIN") // Only ADMIN and FARMER can delete
 
-                        // 🔥 Users routes
+                        // Users routes
                         .requestMatchers("/api/users/**").hasAuthority("ADMIN")  // Only ADMIN can view all users
 //                      .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()  // Everything else must be authenticated
