@@ -1,0 +1,157 @@
+*   41b3603 Feat: Rebase production
+|\  
+| *   6377b9d Merge pull request #33 from AgroConect/feat/jenkins
+| |\  
+| | * 706681a Feat: commenting
+* | | 001440f Feat: Rebase production
+|\| | 
+| * | adc34d9 Merge pull request #32 from AgroConect/feat/jenkins
+| |\| 
+| | * b4d363b Feat: New Jenkis and Docker
+| |/  
+* | 8ad8c9d Update production_agroconnect-backend.yml
+* |   2401d5b Feat: Fixing test error
+|\ \  
+| * \   d0b3356 Merge pull request #31 from AgroConect/feat/pipeline-docker
+| |\ \  
+| | * | a4ea200 Feat: removing test erro
+* | | | c98d20e Feat: Fixing bug 80%
+|\| | | 
+| * | | bc966f2 Merge pull request #30 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | 2d006ed Feat: changing versions]
+| * | | ab1a562 Merge pull request #29 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | aeb14a5 Feat: changing versions]
+| * | | 1da5eaa Merge pull request #27 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | 298fd2b Feat: JenkinsFile
+| * | | 54f0081 Merge pull request #26 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | 62bb999 Feat: JenkinsFile
+| * | | cab3754 Merge pull request #25 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | fcca53c Feat: JenkinsFile
+| * | | 0121d49 Merge pull request #24 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | * | 2ab0d05 Feat: JenkinsFile
+| * | | 8ff8e8a Merge pull request #23 from AgroConect/feat/pipeline-docker
+| |\| | 
+| | |/  
+| |/|   
+| | * 81e726b @
+| | * 7baf61b Feat: Pipelining
+| |/  
+* | 7d02bb3 Update production_agroconnect-backend.yml
+* | f8a7ba8 Update production_agroconnect-backend.yml
+* | f737ff3 Add or update the Azure App Service build and deployment workflow config
+* | bc473cf Merge pull request #22 from AgroConect/development
+|\| 
+| *   9173993 Merge pull request #10 from AgroConect/feat/debugging-controller
+| |\  
+| | * 4617056 Feat: Fixed all bugs issues
+| | *   a507c14 Feat: Fixing bug 80%
+| | |\  
+| | |/  
+| |/|   
+| * |   362e51d Merge pull request #21 from AgroConect/feat/config-package
+| |\ \  
+| | * | 0ba42ae Feat: fixed webconfig
+| * | | ac43dad Merge pull request #20 from AgroConect/feat/config-package
+| |\| | 
+| | * | 2389b3a Feat: Adding Config package to agroconnect
+| |/ /  
+| * |   b0dfc22 Merge pull request #19 from AgroConect/feat/flyway-migration
+| |\ \  
+| | * | 6be9a96 Feat: Refactoring the flyway package for agroconnect
+| * | | a75e839 Merge pull request #18 from AgroConect/feat/flyway-migration
+| |\| | 
+| | * | eed5ae5 feat: flyway migration package refactoring
+| |/ /  
+| * |   c597bb7 Merge pull request #17 from AgroConect/feat/service-package
+| |\ \  
+| | * | fc871c6 Feat: fixing impl from service package
+| |/ /  
+| * |   55b2e19 Merge pull request #16 from AgroConect/feat/entity-package
+| |\ \  
+| | * | 8ef33b5 Feat: Refactoring the entity package for agroconnect
+| |/ /  
+| * |   d6293a9 Merge pull request #15 from AgroConect/feat/service-package
+| |\ \  
+| | * | 337ad85 Feat: Added the Service Package to refactor the backend
+| |/ /  
+| * |   1a3a215 Merge pull request #14 from AgroConect/feat/security-package
+| |\ \  
+| | * | e3ed48a Feat: Adding the Security package for Agroconnect
+| | * |   003d229 Feat: Refactoring the factory package for agroconnect
+| | |\ \  
+| | * | | edeb891 Feat: Refactoring the Factory backend
+| * | | |   c0815d3 Merge pull request #13 from AgroConect/feat/repository-package
+| |\ \ \ \  
+| | |_|/ /  
+| |/| | |   
+| | * | | 61d12b2 feat: repository package refactoring
+| |/ / /  
+| * | |   0e5f10b Merge pull request #12 from AgroConect/feat/factory-package
+| |\ \ \  
+| | * | | 60f4b1e Feat: Refactoring the factory package for agroconnect
+| | |/ /  
+| * | |   ac28c73 Merge pull request #11 from AgroConect/feat/controller-package
+| |\ \ \  
+| | |/ /  
+| |/| |   
+| | * | fabd49a feat: Controller package refactoring
+| |/ /  
+| | * 7b54ff3 Feat: Fixing bug 80%
+| | * 96dda3c Feat: Fixing bug 80%
+| | * f6e2568 Feat: Fixed Product Controller
+| | * 98b639a Feat: Fixed User Controller
+| | * 2cdb05b Feat: Resolving Bug
+| |/  
+| *   f3f2820 Merge pull request #9 from AgroConect/feat/controller-package
+| |\  
+| | * 4d772f8 Feat: Added the controller Package
+| |/  
+| *   7fd94ba Merge pull request #8 from AgroConect/feat/service-package
+| |\  
+| | * 23a9727 Feat: Solved service package new issues
+| * | 5935a6d Merge pull request #7 from AgroConect/feat/service-package
+| |\| 
+| | * 53971b2 Feat: Added the Service Package @50%
+| |/  
+| * 2f7d585 Feat: Updated DB Documentation
+| * 50987fe Feat: Updated DB Documentation
+| * 6b95674 Feat: Updated DB Documentation
+| * 9ddc9ef Feat: Updated DB Documentation
+| * a39c6fc Feat: Updated DB Documentation
+| * 4e124d5 Feat: Updated Readme Documentation
+| * ebadb24 Feat: Fix Database Migration Issues
+| * 33f4708 Feat: FlyWay Configuration for database Migration
+| * 69234d8 Feat: FlyWay Configuration for database Migration
+| *   f21338d Merge pull request #6 from AgroConect/feat/flyway-migration
+| |\  
+| | * 2aff0ff Feat: FlyWay Configuration for database Migration
+| |/  
+| *   14d0204 Merge pull request #5 from AgroConect/feat/config-package
+| |\  
+| | * f019049 Feat: Updated Git Ignore and SecurityConfig
+| * | 3718539 Merge pull request #4 from AgroConect/feat/config-package
+| |\| 
+| | * d2e68ce Feat: Added Config Package
+| |/  
+| *   3833328 Merge pull request #3 from AgroConect/feat/repository-package
+| |\  
+| | * f6518d8 Feat: Added Repository Package
+| |/  
+| *   7d6d405 Merge pull request #2 from AgroConect/feat/factory-package
+| |\  
+| | * e9faf1c Feat: Added Factory Package
+| |/  
+| *   334c197 Merge pull request #1 from AgroConect/feat/entity-package
+| |\  
+| | * daa359a Feat: Added Entity Package
+| |/  
+| * 38629d7 Feat: Backend Codebase Setup @80%
+| * 1cd94d9 "Feat: Updating ReadMe file"
+|/  
+* dc5e27c Feat: Backend Codebase Setup
